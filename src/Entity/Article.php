@@ -6,6 +6,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Article.
@@ -34,8 +35,8 @@ class Article
 
     /**
      * @var float
-     *
      * @ORM\Column(name="price", type="float")
+     * @Assert\GreaterThan(0)
      */
     private $price;
 
@@ -43,6 +44,7 @@ class Article
      * @var int
      *
      * @ORM\Column(name="stock", type="integer")
+     * @Assert\GreaterThanOrEqual(0)
      */
     private $stock;
 
@@ -51,6 +53,7 @@ class Article
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="articles")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @Assert\NotNull()
      */
     private $category;
 
