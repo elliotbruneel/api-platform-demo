@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -25,7 +26,7 @@ class CommandDetailsRepository extends EntityRepository
             ->groupBy('cd.article')
             ->orderBy('total', 'DESC')
             ->setMaxResults(3)
-            ->getQuery()->getResult();
+            ->getQuery()->getArrayResult();
     }
 
     public function findSimilar()
