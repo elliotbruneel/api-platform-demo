@@ -1,2 +1,1 @@
-"# api-platform-demo" 
-"# phoenix" 
+# api-platform-demo
