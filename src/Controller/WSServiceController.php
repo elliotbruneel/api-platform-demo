@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,6 +25,14 @@ class WSServiceController extends AbstractController {
         $response->setContent(ob_get_clean());
 
         return $response;
+    }
+
+
+    /**
+     * @Route("/test")
+     */
+    public function test(EntityManagerInterface $em){
+        dd($em->getRepository(Article::class)->findAll());
     }
 }
 
