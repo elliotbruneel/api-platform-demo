@@ -2,6 +2,7 @@
 
 namespace App\WS;
 
+use App\Entity\Article;
 use App\Entity\CommandDetails;
 use App\Repository\CommandDetailsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -37,6 +38,19 @@ class WSService {
         $bestSellers = $repository->findBestSeller();
 
         return $bestSellers;
+    }
+
+    /**
+     * @param int $id
+     * @return App\Entity\Article article
+     */
+    public function getArticle($id = 1) {
+
+        $repository = $this->em->getRepository(CommandDetails::class);
+
+        $article = $repository->find($id);
+
+        return $article;
     }
 }
 

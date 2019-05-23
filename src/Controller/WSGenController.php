@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\CommandDetails;
+use App\Entity\Article;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,15 +22,6 @@ class WSGenController extends AbstractController {
         header('Content-Type: application/wsdl+xml');
         $wsdl = $autodiscover->generate();
         $wsdl->dump("../www/products.wsdl");
-
-        /*$WSService = new WSService($this->getDoctrine()->getManager());
-        dd($WSService->getBestSellers());*/
-
-        $repository = $this->getDoctrine()->getRepository(CommandDetails::class);
-
-        $bestSellers = $repository->findBestSeller();
-
-        dd($bestSellers);
 
         return new Response($wsdl->toXML());
     }
